@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+Due to time constraint I did not get a chance to finish the filtering feature. The way I would do this by checking the status property of the invoice and showing/hiding based on selected filter.
+Another thing I didn't get a chance was to dynamically save data into local storage. I would do this by writing a method that would parse that data into a JSON file.
