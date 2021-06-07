@@ -1,0 +1,134 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2 py-3 d-flex justify-content-between">
+      <div>
+      <h1>Invoices</h1>
+      <h6>There are NUMBER total invoices.</h6>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="dropdown">
+        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          Filter by status
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+      <div class="px-3">
+      <button type="button" class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">New Invoice</button>
+
+      <!--Modal-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog custom-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title w-100" id="exampleModalLabel">Create Invoice</h2>
+            </div>
+            <div class="modal-body">
+              <form>
+                <label class="bill-label pb-3">Bill From</label>
+
+                <div class="form-group pb-3">
+                  <label for="streetAddressFrom">Street address</label>
+                  <input type="email" class="form-control" id="streetAddressFrom" aria-describedby="streetHelp">
+                </div>
+                <div class="form-row">
+                  <div class="col-12 d-flex justify-content-between pb-3">
+                    <div class="form-group">
+                      <label for="cityInputFrom">City</label>
+                      <input type="email" class="form-control" id="cityInputFrom" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                      <label for="postCodeInputFrom">Post Code</label>
+                      <input type="email" class="form-control" id="postCodeInputFrom" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                      <label for="countryInputFrom">Country</label>
+                      <input type="email" class="form-control" id="countryInputFrom" aria-describedby="emailHelp">
+                    </div>
+                  </div>
+                </div>
+                <label class="bill-label py-3">Bill To</label>
+
+                <div class="form-group pb-3">
+                  <label for="clientInput">Clinet's Name</label>
+                  <input type="email" class="form-control" id="clientInput" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group pb-3">
+                  <label for="clientEmail">Client's Email</label>
+                  <input type="email" class="form-control" id="clientEmail" aria-describedby="emailHelp" placeholder="e.g.email@example.com">
+                </div>
+                <div class="form-group pb-3">
+                  <label for="streetAddressTo">Street Address</label>
+                  <input type="email" class="form-control" id="streetAddressTo" aria-describedby="emailHelp">
+                </div>
+                <div class="form-row">
+                  <div class="col-12 d-flex justify-content-between pb-3">
+                    <div class="form-group">
+                      <label for="cityInputTo">City</label>
+                      <input type="email" class="form-control" id="cityInputTo" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                      <label for="postCodeInputTo">Post Code</label>
+                      <input type="email" class="form-control" id="postCodeInputTo" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                      <label for="countryInputTo">Country</label>
+                      <input type="email" class="form-control" id="countryInputTo" aria-describedby="emailHelp">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="col-12 d-flex justify-content-between pb-3">
+                    <div class="form-group w-48">
+                      <label for="exampleInputEmail1">Invoce Date</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group w-48">
+                      <label for="inputState">Payment Terms</label>
+                      <select id="inputState" class="form-control">
+                        <option selected>Net 1 Day</option>
+                        <option>Net 7 Days</option>
+                        <option>Net 14 Days</option>
+                        <option>Net 30 Days</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group pb-3">
+                  <label for="exampleInputEmail1">Description</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="e.g.email@example.com">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <div>
+                <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal" aria-label="Close">Discard</button>
+
+              </div>
+              <div>
+                <button type="button" class="btn btn-secondary rounded-pill mx-2" data-bs-dismiss="modal">Save as drafts</button>
+                <button type="button" class="btn btn-success rounded-pill">Save & Send</button>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--list-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-8 flex-column offset-2">
+      <app-invoices-item *ngFor="let invoice of invoices" [invoiceIt]="invoice"></app-invoices-item>
+    </div>
+  </div>
+</div>

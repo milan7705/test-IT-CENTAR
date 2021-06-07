@@ -1,0 +1,15 @@
+.custom-modal {
+  max-width: 700px !important;
+  .modal-body {
+    overflow-y: scroll;
+  }
+  .modal-content {
+    height: 727px;
+  }
+  .bill-label {
+    font-weight: 600;
+  }
+  .w-48 {
+    width: 48% !important;
+  }
+}

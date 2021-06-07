@@ -1,0 +1,9 @@
+.badge-section {
+  display: flex;
+  align-items: baseline;
+}
+.badge-secondary {
+  &--custom {
+    background-color: coral;
+  }
+}

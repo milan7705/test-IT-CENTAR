@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap';
+
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+
+@import 'base/typography';
+
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/forms';
+@import 'layout/modal';
+
+@import 'components/buttons';
+@import 'components/cards';
