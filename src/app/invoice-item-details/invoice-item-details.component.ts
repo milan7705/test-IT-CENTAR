@@ -15,6 +15,7 @@ export class InvoiceItemDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    //function for view all Invoices
     this.invoices = this.invoiceService.getInvoices()
 
 

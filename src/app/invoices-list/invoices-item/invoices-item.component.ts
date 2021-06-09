@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { InvoiceObj } from 'data-invoices';
 import { InvoiceServiceService } from 'src/app/invoice-service.service';
 // import * as EventEmitter from 'events';
 import {Invoices} from '../../invoices.model';
@@ -9,7 +10,8 @@ import {Invoices} from '../../invoices.model';
   styleUrls: ['./invoices-item.component.scss']
 })
 export class InvoicesItemComponent implements OnInit {
-  @Input() invoiceIt!: Invoices;
+  // @Input() invoiceIt!: Invoices ;
+  invoiceIt : any;
 
 
   constructor(private invoiceService: InvoiceServiceService) { }
@@ -17,8 +19,9 @@ export class InvoicesItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSelectedItem() {
-    this.invoiceService.invoiceEmmiter.emit(this.invoiceIt!);
-  }
+  // onSelectedItem() {
+  //   // THIS IS EMITT TO CHECK ITEM INVOICE
+  //   this.invoiceService.invoiceEmmiter.emit(this.invoiceIt!);
+  // }
 
 }
