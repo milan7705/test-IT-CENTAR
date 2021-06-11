@@ -7,19 +7,38 @@ import { Invoices } from './invoices.model';
 })
 export class InvoiceServiceService extends InvoiceObj {
 
-  invoiceEmmiter = new EventEmitter<Invoices>(); // emitter for simplify all changes on project
-
-
-  // ]
   constructor() {
     super();
     this.load()
   }
 
-  getInvoices() { //Copy of Invoices[] arr
-    // return this.invoices.slice();
-
+  getInvoices() {
     let invoiceEl = JSON.parse(localStorage.getItem('invoices')!);
     return invoiceEl;
+}
+
+onDeleteInvoice(id) {
+  let invoiceEl = JSON.parse(localStorage.getItem('invoices')!);
+  for(let index = 0; index<invoiceEl.length; index++) {
+    if(invoiceEl[index].id == id) {
+      invoiceEl.splice(index, 1)
+    }
+  }
+  localStorage.setItem('invoices', JSON.stringify(invoiceEl))
+}
+
+
+addInvoices(items) {
+  localStorage.setItem('invoices', JSON.stringify(items));
+}
+updateInvoice(oldInv, newInv){
+  let el = JSON.parse(localStorage.getItem('invoices')!);
+
+for(let i = 0; i <el.length; i++) {
+ if(el[i].id == oldInv.id) {
+   el[i] = newInv;
+ }
+}
+ localStorage.setItem('invoices', JSON.stringify(el));
 }
 }

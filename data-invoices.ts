@@ -2,7 +2,7 @@ export class InvoiceObj {
   load() {
     if (localStorage.getItem('invoices') === null || localStorage.getItem('invoices') == undefined) {
 
-      let InitialInvoices = [
+      let InitialInvoices =
         [
           {
             "id": "RT3080",
@@ -233,7 +233,7 @@ export class InvoiceObj {
             ],
             "total": 3102.04
           }
-        ]
+
       ];
       localStorage.setItem('invoices', JSON.stringify(InitialInvoices));
       return

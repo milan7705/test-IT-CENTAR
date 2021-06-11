@@ -1,9 +1,9 @@
-<a href="#" *ngFor="let invoice of invoiceIt" class="list-group-item list-group-item--custom clearfix my-4">
+<a [routerLink]="['/invoice-detail', invoiceIt.id]" *ngFor ="let invoiceIt of invoicesAll; index as i" class="list-group-item list-group-item--custom clearfix my-4">
   <div class="col-12 d-flex justify-content-between w-100">
-  <div class="fw-bold"><span class="main-text fw-normal">#</span>{{invoiceIt.invoiceId}}</div>
-  <div class="main-text">{{invoiceIt.invoiceDateTo}}</div>
-  <div class="main-text">{{invoiceIt.clientNameTo}}</div>
-  <div class="fw-bold">{{invoiceIt.invoiceAmount}}</div>
-  <div><h5> <span class="badge badge-secondary badge-secondary--custom mx-2">Pending</span></h5></div>
+  <div class="fw-bold"><span class="main-text fw-normal">#</span>{{invoiceIt.id}}</div>
+  <div class="main-text">{{invoiceIt.createdAt}}</div>
+  <div class="main-text">{{invoiceIt.clientName}}</div>
+  <div class="fw-bold">${{invoiceIt.total}}</div>
+  <div><h5> <span class="badge mx-2" [ngClass]= "this.getStatusStyle(invoiceIt.status)">{{invoiceIt.status}}</span></h5></div>
 </div>
 </a>

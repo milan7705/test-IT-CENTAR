@@ -3,22 +3,17 @@
     <div class="col-8 offset-2 py-3 d-flex justify-content-between">
       <div>
       <h1>Invoices</h1>
-      <h6>There are NUMBER total invoices.</h6>
+      <h6>There are {{invoiceEl.length}} total invoices.</h6>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-      <div class="dropdown">
-        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          Filter by status
-        </a>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Filter by status</option>
+        <option value="paid">Paid</option>
+        <option value="pending">Pending</option>
+        <option value="draft">Draft</option>
+      </select>
       <div class="px-3">
-      <button type="button" class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">New Invoice</button>
+      <button type="button" class="btn btn-dark new-invoice-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">New Invoice</button>
 
       <!--Modal-->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -28,93 +23,165 @@
               <h2 class="modal-title w-100" id="exampleModalLabel">Create Invoice</h2>
             </div>
             <div class="modal-body">
-              <form [formGroup]="createValidationInvoices" (submit)="onSubmit()">
+              <form #myForm="ngForm" (ngSubmit)="myForm.form.valid && onSubmit($event)">
                 <label class="bill-label pb-3">Bill From</label>
 
                 <div class="form-group pb-3">
                   <label for="streetAddressFrom">Street address</label>
-                  <input type="email" formControlName="streetAddressFrom" class="form-control" id="streetAddressFrom" aria-describedby="streetHelp">
+                  <input type="email" class="form-control" #streetAddressValid="ngModel" [(ngModel)]="streetAddressFrom" required name="streetAddressFrom" id="streetAddressFrom" aria-describedby="streetHelp">
+                </div>
+                <div *ngIf="streetAddressValid.errors && (streetAddressValid.dirty || streetAddressValid.touched)">
+                  <p  class="text-danger" *ngIf="streetAddressValid.errors.required">Address is required!</p>
                 </div>
                 <div class="form-row">
                   <div class="col-12 d-flex justify-content-between pb-3">
                     <div class="form-group">
                       <label for="cityFrom">City</label>
-                      <input type="email" formControlName="cityFrom" class="form-control" id="cityFrom" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" #cityFromValid="ngModel" [(ngModel)]="cityFrom" required name="cityFrom" id="cityFrom" aria-describedby="emailHelp">
+                      <div *ngIf="cityFromValid.errors && (cityFromValid.dirty || cityFromValid.touched)">
+                        <p  class="text-danger" *ngIf="cityFromValid.errors.required">City is required!</p>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="postCodeFrom">Post Code</label>
-                      <input type="email" formControlName="postCodeFrom" class="form-control" id="postCodeFrom" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" #postCodeFromValid="ngModel" [(ngModel)]="postCodeFrom" required name="postCodeFrom" id="postCodeFrom" aria-describedby="emailHelp">
+                      <div *ngIf="postCodeFromValid.errors && (postCodeFromValid.dirty || postCodeFromValid.touched)">
+                        <p  class="text-danger" *ngIf="postCodeFromValid.errors.required">Post Code is required!</p>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="countryFrom">Country</label>
-                      <input type="email" formControlName="countryFrom" class="form-control" id="countryFrom" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" #countryFromValid="ngModel" [(ngModel)]="countryFrom" required name="countryFrom"  id="countryFrom" aria-describedby="emailHelp">
+                      <div *ngIf="countryFromValid.errors && (countryFromValid.dirty || countryFromValid.touched)">
+                        <p  class="text-danger" *ngIf="countryFromValid.errors.required">Country is required!</p>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <label class="bill-label py-3">Bill To</label>
 
                 <div class="form-group pb-3">
-                  <label for="clientName">Clinet's Name</label>
-                  <input type="email" formControlName="clientName" class="form-control" id="clientName" aria-describedby="emailHelp">
+                  <label for="clientName">Client Name</label>
+                  <input type="email" class="form-control" #clientNameValid="ngModel" [(ngModel)]="clientName" required name="clientName"  id="clientName" aria-describedby="emailHelp">
+                  <div *ngIf="clientNameValid.errors && (clientNameValid.dirty || clientNameValid.touched)">
+                    <p  class="text-danger" *ngIf="clientNameValid.errors.required">Client is required!</p>
+                  </div>
                 </div>
                 <div class="form-group pb-3">
-                  <label for="clientEmail">Client's Email</label>
-                  <input type="email" formControlName="clientEmail" class="form-control" id="clientEmail" aria-describedby="emailHelp" placeholder="e.g.email@example.com">
+                  <label for="clientEmail">Client Email</label>
+                  <input type="email" class="form-control" #clientEmailValid="ngModel" [(ngModel)]="clientEmail" required name="clientEmail"  id="clientEmail" aria-describedby="emailHelp" placeholder="e.g.email@example.com">
+                  <div *ngIf="clientEmailValid.errors && (clientEmailValid.dirty || clientEmailValid.touched)">
+                    <p  class="text-danger" *ngIf="clientEmailValid.errors.required">Client Email is required!</p>
+                  </div>
                 </div>
                 <div class="form-group pb-3">
                   <label for="streetAddressTo">Street Address</label>
-                  <input type="email" formControlName="streetAddressTo" class="form-control" id="streetAddressTo" aria-describedby="emailHelp">
+                  <input type="email" class="form-control" #streetAddressValid2="ngModel" [(ngModel)]="streetAddressTo" required name="streetAddressTo"  id="streetAddressTo" aria-describedby="emailHelp">
+                  <div *ngIf="streetAddressValid2.errors && (streetAddressValid2.dirty || streetAddressValid2.touched)">
+                    <p  class="text-danger" *ngIf="streetAddressValid2.errors.required">Street Address is required!</p>
+                  </div>
                 </div>
                 <div class="form-row">
                   <div class="col-12 d-flex justify-content-between pb-3">
                     <div class="form-group">
                       <label for="cityTo">City</label>
-                      <input type="email" formControlName="cityTo" class="form-control" id="cityTo" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" #cityToValid="ngModel" [(ngModel)]="cityTo" required name="cityTo"  id="cityTo" aria-describedby="emailHelp">
+                      <div *ngIf="cityToValid.errors && (cityToValid.dirty || cityToValid.touched)">
+                        <p  class="text-danger" *ngIf="cityToValid.errors.required">Street City is required!</p>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="postCodeTo">Post Code</label>
-                      <input type="email" formControlName="postCodeTo" class="form-control" id="postCodeTo" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" #postCodeValid="ngModel" [(ngModel)]="postCodeTo" required name="postCodeTo" id="postCodeTo" aria-describedby="emailHelp">
+                      <div *ngIf="postCodeValid.errors && (postCodeValid.dirty || postCodeValid.touched)">
+                        <p  class="text-danger" *ngIf="postCodeValid.errors.required">Post Code is required!</p>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="countryTo">Country</label>
-                      <input type="email" formControlName="countryTo" class="form-control" id="countryTo" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" #countryToValid="ngModel" [(ngModel)]="countryTo" required name="countryTo"  id="countryTo" aria-describedby="emailHelp">
+                      <div *ngIf="countryToValid.errors && (countryToValid.dirty || countryToValid.touched)">
+                        <p  class="text-danger" *ngIf="countryToValid.errors.required">Country is required!</p>
+                      </div>
                     </div>
-                  </div>
+
+                </div>
                 </div>
                 <div class="form-row">
                   <div class="col-12 d-flex justify-content-between pb-3">
                     <div class="form-group w-48">
                       <label for="invoiceDate">Invoce Date</label>
-                      <input type="email" formControlName="invoiceDate" class="form-control" id="invoiceDate" aria-describedby="emailHelp">
+                      <input type="email" class="form-control" #invoiceDateValid="ngModel" [(ngModel)]="invoiceDate" required name="invoiceDate"  id="invoiceDate" aria-describedby="emailHelp">
+                      <div *ngIf="invoiceDateValid.errors && (invoiceDateValid.dirty || invoiceDateValid.touched)">
+                        <p  class="text-danger" *ngIf="invoiceDateValid.errors.required">Invoice Date is required!</p>
+                      </div>
                     </div>
                     <div class="form-group w-48">
                       <label for="paymentTerms">Payment Terms</label>
-                      <select formControlName="paymentTerms" class="form-control" id="paymentTerms">
-                        <option selected>Net 1 Day</option>
-                        <option>Net 7 Days</option>
-                        <option>Net 14 Days</option>
-                        <option>Net 30 Days</option>
+                      <select class="form-control" #paymentTermsValid="ngModel" [(ngModel)]="paymentTerms" required name="paymentTerms"  id="paymentTerms">
+                        <option selected value="1">Net 1 Day</option>
+                        <option value="7">Net 7 Days</option>
+                        <option value="14">Net 14 Days</option>
+                        <option value="30">Net 30 Days</option>
                       </select>
                     </div>
                   </div>
                 </div>
                 <div class="form-group pb-3">
                   <label for="description">Description</label>
-                  <input type="email" formControlName="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="e.g.email@example.com">
+                  <input type="email" class="form-control" #descriptionValid="ngModel" [(ngModel)]="description" required name="description"  id="description" aria-describedby="emailHelp">
+                  <div *ngIf="descriptionValid.errors && (descriptionValid.dirty || descriptionValid.touched)">
+                    <p  class="text-danger" *ngIf="descriptionValid.errors.required">Description is required!</p>
+                  </div>
                 </div>
-              <div class="modal-footer d-flex justify-content-between">
-                <div>
-                  <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal" aria-label="Close">Discard</button>
-
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-12 pb-3">
+                      <div class="btn btn-danger w-100" (click)= "onCreateNewItem()">+Add New Item</div>
+                    </div>
+                  </div>
+                  <div class="row" *ngFor=" let item of items; index as i">
+                    <div class="col-12 d-flex justify-content-between">
+                      <div class="col-5">
+                      <div class="form-group pb-3">
+                        <label for="description">Item Name</label>
+                        <input type="text" class="form-control" id="itemName{{i}}" [value]=item.name/>
+                      </div>
+                    </div>
+                      <div class="col-2">
+                        <div class="form-group pb-3">
+                          <label for="description">Qty</label>
+                          <input type="text"  class="form-control" id="qty{{i}}" [value]=item.quantity/>
+                        </div>
+                      </div>
+                      <div class="col-2">
+                        <div class="form-group pb-3">
+                          <label for="description">Price</label>
+                          <input type="text" class="form-control" id="price{{i}}" [value]=item.price/>
+                        </div>
+                      </div>
+                      <div class="col-2">
+                        <div class="form-group pb-3">
+                          <label for="description">Total</label>
+                          <div class="d-flex justify-content-between align-items-end">
+                            <p class="m-0 mt-2">{{item.total}}</p> <span><i class="fas fa-trash-alt" (click)= onDeleteItem(i)></i></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <button type="button" class="btn btn-secondary rounded-pill mx-2" data-bs-dismiss="modal">Save as drafts</button>
-                  <button type="submit" class="btn btn-success rounded-pill">Save & Send</button>
+                <div class="modal-footer d-flex justify-content-between">
+                  <div>
+                    <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal" aria-label="Close">Discard</button>
+                  </div>
+                  <div>
+                    <input type="submit" class="btn btn-success rounded-pill" value="Save & Send"/>
+                    <input type="button" class="btn btn-secondary rounded-pill mx-2" (click)= "onSubmit($event)" value="Save as Draft" />
+                  </div>
                 </div>
-              </div>
-
-            </form>
-          </div>
+              </form>
+            </div>
         </div>
       </div>
       </div>
@@ -123,11 +190,12 @@
 </div>
 </div>
 
+
 <!--list-->
 
 <div class="container">
   <div class="row">
-    <div class="col-8 flex-column offset-2">
+    <div class="col-8 flex-column offset-2 p-0">
       <app-invoices-item ></app-invoices-item>
     </div>
   </div>

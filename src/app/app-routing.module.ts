@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path:'', redirectTo: '/invoice-list', pathMatch: 'full'},
   {path: 'invoice-list', component: InvoicesListComponent},
-  {path: 'invoice-detail', component: InvoiceItemDetailsComponent},
+  {path: 'invoice-detail/:id', component: InvoiceItemDetailsComponent},
 ];
 
 @NgModule({

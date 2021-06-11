@@ -32,19 +32,15 @@
             ],
             "styles": [
               "src/styles/styles.scss",
-              "./node_modules/bootstrap/scss/bootstrap.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css"
 
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/styles",
-                "./node_modules/bootstrap/scss"
+                "src/styles"
               ]
             },
             "scripts": [
-              "./node_modules/popper.js/dist/umd/popper.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
